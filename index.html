@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Salishan</title>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body { background: #000; width: 100vw; height: 100vh; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+      #rive-canvas { height: 100%; aspect-ratio: 16/9; display: block; }
+    </style>
+  </head>
+  <body>
+    <canvas id="rive-canvas"></canvas>
+    <script src="https://unpkg.com/@rive-app/webgl2"></script>
+    <script>
+      const r = new rive.Rive({
+        src: "salishan.riv",
+        canvas: document.getElementById("rive-canvas"),
+        autoplay: true,
+        autoBind: true,
+        stateMachines: "MAIN",
+        layout: new rive.Layout({ fit: rive.Fit.Contain }),
+        onLoad: () => {
+          r.resizeDrawingSurfaceToCanvas();
+        },
+      });
+
+      window.addEventListener("resize", () => {
+        r.resizeDrawingSurfaceToCanvas();
+      });
+    </script>
+  </body>
+</html>
